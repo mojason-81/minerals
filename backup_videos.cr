@@ -1,3 +1,9 @@
+# FIXME:
+# Looks like when compiling this here on Ubuntu 18.04,
+# I'm introducing a dependency on a shared library, libevent-2.1-6
+# This causes the program to fail when running on Ubuntu 16.04 since
+# that package is neither installed nor available in the repos for 16.04
+
 # TODOs:
 # let's create the directories if they don't exist
 # let's backup plex data also
