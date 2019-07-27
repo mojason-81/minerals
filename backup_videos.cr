@@ -1,12 +1,24 @@
 # TODOs:
 # let's create the directories if they don't exist
+# let's backup plex data also
+#  plex data is found in /var/lib/plexmediaserver/Library/Application\ Support/Plex\ Media\ Server/
+#  just zip the whole darn thing and copy it over to the other drive
+#  need admin (or need to chmod) the Preferences.xml file
 require "file_utils"
 
 if ARGV.size < 3
-  puts "\nYou're missing arguments.\nYou need a source directory, target (backup) directory, and at least one file extension.\ni.e. /home/you/Videos /home/you/VideoBackup m4v\n\n"
+  puts "
+    You're missing arguments.
+    You need a source directory, target (backup) directory, and at least one file extension.
+    i.e. /home/you/Videos /home/you/VideoBackup m4v\n\n"
   exit
 end
 
+# TODOs:
+# If current root doesn't exist
+#   Tell the user or print a log and exit.
+# It the backup root doesn't exist
+#   Create it.
 current_root    = Dir.new(ARGV[0])
 bakup_root      = Dir.new(ARGV[1])
 extensions      = ARGV[2..-1]
@@ -21,17 +33,26 @@ reducer = Proc(Hash(String, String), String, Hash(String, String)).new { |acc, p
 }
 
 current_basenames = source_files.reduce(
-  Hash(String, String).new
+  {} of String => String
+  # Same as
+  # Hash(String, String).new
 ) { |acc, path| reducer.call(acc, path) }
 
 bakup_basenames = bakup_files.reduce(
-  Hash(String, String).new
+  {} of String => String
+  # Same as
+  # Hash(String, String).new
 ) { |acc, path| reducer.call(acc, path) }
 
 source_files.each do |file_path|
+  # Check to see if the file is already in the backup directory.
   if !bakup_basenames.fetch(File.basename(file_path), nil)
     puts "Found new file: #{file_path}"
     begin
+      # TODO:
+      # Strip base name from file_path
+      # Use that to check if Dir exists
+      # Create directory if it doesn't exist
       FileUtils.cp(file_path, file_path.gsub(current_root.path, bakup_root.path))
       puts "Copied new file to: #{file_path.gsub(current_root.path, bakup_root.path)}"
     rescue e
