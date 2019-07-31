@@ -10,6 +10,8 @@
 #  plex data is found in /var/lib/plexmediaserver/Library/Application\ Support/Plex\ Media\ Server/
 #  just zip the whole darn thing and copy it over to the other drive
 #  need admin (or need to chmod) the Preferences.xml file
+# maybe instead of taking in the directories and file extensions on the command line,
+#  we read them in from a config file
 require "file_utils"
 
 if ARGV.size < 3
