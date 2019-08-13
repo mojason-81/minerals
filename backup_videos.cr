@@ -3,6 +3,10 @@
 # I'm introducing a dependency on a shared library, libevent-2.1-6
 # This causes the program to fail when running on Ubuntu 16.04 since
 # that package is neither installed nor available in the repos for 16.04
+#
+# More info: I'm thiking i saw this libevent-2.1-6 get installed
+# along with crystal.  So perhaps all I need to do is install on my
+# other machine.
 
 # TODOs:
 # let's backup plex data also
