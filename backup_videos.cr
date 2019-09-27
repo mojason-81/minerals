@@ -60,24 +60,25 @@ def main
 
   source_files.each do |file_path|
     # Check to see if the file is already in the backup directory.
-    next if backup_basenames.fetch(File.basename(file_path), nil) 
-      puts "Found new file: #{file_path}"
-      destination_directory = file_path.gsub(File.basename(file_path), "").gsub(current_root.path, backup_root.path)
+    next if backup_basenames.fetch(File.basename(file_path), nil)
 
-      begin
-        # Get the directory and create it if it doesn't exist
-        if !Dir.exists?(destination_directory)
-          # 0o0775 is octal and it's rwxrwxr-x
-          puts "Creating new directory #{destination_directory}"
-          Dir.mkdir_p(destination_directory, 0o0775)
-        end
+    puts "Found new file: #{file_path}"
+    destination_directory = file_path.gsub(File.basename(file_path), "").gsub(current_root.path, backup_root.path)
 
-        destination_path = file_path.gsub(current_root.path, backup_root.path)
-        FileUtils.cp(file_path, destination_path)
-        puts "Copied new file to: #{destination_path}"
-      rescue e
-        puts "Something went wrong copying the file.\n#{e}"
+    begin
+      # Get the directory and create it if it doesn't exist
+      if !Dir.exists?(destination_directory)
+        # 0o0775 is octal and it's rwxrwxr-x
+        puts "Creating new directory #{destination_directory}"
+        Dir.mkdir_p(destination_directory, 0o0775)
       end
+
+      destination_path = file_path.gsub(current_root.path, backup_root.path)
+      FileUtils.cp(file_path, destination_path)
+      puts "Copied new file to: #{destination_path}"
+    rescue e
+      puts "Something went wrong copying the file.\n#{e}"
+    end
   end
 end
 
