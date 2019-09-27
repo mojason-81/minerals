@@ -40,12 +40,12 @@ def main
     Dir.mkdir_p(ARGV[1], 0o0775)
   end
   current_root    = Dir.new(ARGV[0])
-  backup_root      = Dir.new(ARGV[1])
+  backup_root     = Dir.new(ARGV[1])
   extensions      = ARGV[2..-1]
   source_patterns = extensions.map { |extension| "#{current_root.path}/**/*.#{extension}" }
   backup_patterns = extensions.map { |extension| "#{backup_root.path}/**/*.#{extension}" }
   source_files    = Dir.glob(source_patterns)
-  backup_files     = Dir.glob(backup_patterns)
+  backup_files    = Dir.glob(backup_patterns)
 
   reducer = Proc(Hash(String, String), String, Hash(String, String)).new { |acc, path|
     acc[File.basename(path)] = path
