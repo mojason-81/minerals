@@ -52,12 +52,6 @@ def main
     return acc
   }
 
-  current_basenames = source_files.reduce(
-    {} of String => String
-    # Same as
-    # Hash(String, String).new
-  ) { |acc, path| reducer.call(acc, path) }
-
   backup_basenames = backup_files.reduce(
     {} of String => String
     # Same as
@@ -66,7 +60,7 @@ def main
 
   source_files.each do |file_path|
     # Check to see if the file is already in the backup directory.
-    if !backup_basenames.fetch(File.basename(file_path), nil)
+    next if backup_basenames.fetch(File.basename(file_path), nil) 
       puts "Found new file: #{file_path}"
       destination_directory = file_path.gsub(File.basename(file_path), "").gsub(current_root.path, backup_root.path)
 
@@ -84,7 +78,6 @@ def main
       rescue e
         puts "Something went wrong copying the file.\n#{e}"
       end
-    end
   end
 end
 
