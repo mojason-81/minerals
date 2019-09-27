@@ -5,16 +5,13 @@
 # that package is neither installed nor available in the repos for 16.04
 #
 # More info: I'm thiking i saw this libevent-2.1-6 get installed
-# along with crystal.  So perhaps all I need to do is install on my
-# other machine.
+# along with crystal.  So perhaps all I need to do is install Crystal on
+# my other machine, but that defeats some of the purpose of compiling
+# this script in the first place.
 
 # TODOs:
-# let's backup plex data also
-#  plex data is found in /var/lib/plexmediaserver/Library/Application\ Support/Plex\ Media\ Server/
-#  just zip the whole darn thing and copy it over to the other drive
-#  need admin (or need to chmod) the Preferences.xml file
-# maybe instead of taking in the directories and file extensions on the command line,
-#  we read them in from a config file
+# maybe instead of taking in the directories and file extensions on the
+# command line, we read them in from a config file
 require "file_utils"
 
 def main
