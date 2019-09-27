@@ -1,17 +1,19 @@
 # FIXME:
 # Looks like when compiling this here on Ubuntu 18.04,
-# I'm introducing a dependency on a shared library, libevent-2.1-6
-# This causes the program to fail when running on Ubuntu 16.04 since
-# that package is neither installed nor available in the repos for 16.04
+#   I'm introducing a dependency on a shared library, libevent-2.1-6
+#   This causes the program to fail when running on Ubuntu 16.04 since
+#   that package is neither installed nor available in the repos for 16.04
 #
 # More info: I'm thiking i saw this libevent-2.1-6 get installed
-# along with crystal.  So perhaps all I need to do is install Crystal on
-# my other machine, but that defeats some of the purpose of compiling
-# this script in the first place.
+#   along with crystal.  So perhaps all I need to do is install Crystal on
+#   my other machine, but that defeats some of the purpose of compiling
+#   this script in the first place.
 
 # TODOs:
-# maybe instead of taking in the directories and file extensions on the
-# command line, we read them in from a config file
+# Maybe instead of taking in the directories and file extensions on the
+#   command line, we read them in from a config file
+# Maybe zip up the videos
+
 require "file_utils"
 
 def main
