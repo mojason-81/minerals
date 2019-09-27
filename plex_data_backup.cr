@@ -1,6 +1,8 @@
 require "zip"
 require "file_utils"
 
+# TODO: Maybe instead of hard-coding the directories here, read them in from a config file
+
 def main
   root_plex_dir = "/var/lib/plexmediaserver/Library/Application\ Support/Plex\ Media\ Server"
   backup_drive  = "/mnt/19792965-aed7-4700-b61c-187d669717a0"
